@@ -5,10 +5,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src/app
+        
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      
     - name: Build
       run: dotnet build --configuration Release
+      
     - name: Test
       run: dotnet test --configuration Release --no-build

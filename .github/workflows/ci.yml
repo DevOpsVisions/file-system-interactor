@@ -1,7 +1,13 @@
+name: Build and Publish Nuget Package
+
 on:
   push:
     branches:
     - main
+  pull_request:
+    branches:
+    - main
+    
 jobs:
   build:
     runs-on: ubuntu-latest

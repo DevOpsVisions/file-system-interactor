@@ -12,17 +12,6 @@ namespace Dovs.FileSystemInteractor.Services
     /// </summary>  
     public class ExcelReaderService : IExcelReaderService
     {
-        private readonly IConfigurationService _configurationService;
-
-        /// <summary>  
-        /// Initializes a new instance of the <see cref="ExcelReaderService"/> class.  
-        /// </summary>  
-        /// <param name="configurationService">The configuration service.</param>  
-        public ExcelReaderService(IConfigurationService configurationService)
-        {
-            _configurationService = configurationService;
-        }
-
         /// <summary>  
         /// Reads user data from the specified Excel file.  
         /// </summary>  

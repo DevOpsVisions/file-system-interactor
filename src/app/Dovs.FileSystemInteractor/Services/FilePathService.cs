@@ -59,9 +59,12 @@ namespace Dovs.FileSystemInteractor.Services
             return HandleUserChoice(choice, defaultFilePath);
         }
 
-        public string[] GetExcelFiles(string basePath)
+        public string[] GetFiles(string basePath, string fileExtension)
         {
-            return Directory.GetFiles(basePath, "*.xlsx");
+            Console.WriteLine($"Current Path: {basePath}");
+
+            // Get files with the specified extension
+            return Directory.GetFiles(basePath, $"*{fileExtension}");
         }
 
         private void PrintFilePathOptions(string defaultFilePath)

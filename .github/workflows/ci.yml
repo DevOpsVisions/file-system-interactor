@@ -11,6 +11,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+      id-token: write
     defaults:
       run:
         working-directory: ./src/lib
@@ -24,3 +28,11 @@ jobs:
       
     - name: Test
       run: dotnet test --configuration Release --no-build
+
+    - name: Pack
+      run: dotnet pack --configuration Release --no-restore --output ./nupkg
+
+    - name: Publish to GitHub Packages
+      run: dotnet nuget push ./nupkg/*.nupkg --source https://nuget.pkg.github.com/DevOpsVisions/index.json --api-key ${GITHUB_TOKEN}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

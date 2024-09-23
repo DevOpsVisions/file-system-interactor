@@ -1,0 +1,14 @@
+name: Build and Publish Nuget Package
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    uses: ${{ github.repository_owner }}/common-workspace-hub/.github/workflows/reusable-publish-nuget.yml
+    with:
+      working-directory: ./src/lib  
+      package-source: 'https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json'
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+

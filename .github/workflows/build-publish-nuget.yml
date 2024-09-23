@@ -1,7 +1,9 @@
 name: Build and Publish Nuget Package
 
-on: 
-  workflow_dispatch:
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build-and-publish:

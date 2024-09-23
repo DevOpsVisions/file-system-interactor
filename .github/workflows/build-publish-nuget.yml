@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-publish:
-    uses: ${{ github.repository_owner }}/common-workspace-hub/.github/workflows/reusable-publish-nuget.yml@main
+    uses: DevOpsVisions/common-workspace-hub/.github/workflows/reusable-publish-nuget.yml@main
     with:
       working-directory: ./src/lib  
       package-source: 'https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json'

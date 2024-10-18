@@ -1,29 +1,40 @@
-﻿
+﻿using Microsoft.Extensions.Configuration;
 using Dovs.FileSystemInteractor.Interfaces;
 using System.Configuration;
 
 namespace Dovs.FileSystemInteractor.Services
 {
-    /// <summary>  
-    /// Service for handling configuration operations.  
-    /// </summary>  
+    /// <summary>
+    /// Service for handling configuration operations.
+    /// </summary>
     public class ConfigurationService : IConfigurationService
     {
-        /// <summary>  
-        /// Gets the configuration value for the specified key.  
-        /// </summary>  
-        /// <param name="key">The key of the configuration value.</param>  
-        /// <returns>The configuration value associated with the specified key.</returns>  
-        public string GetConfigValue(string key)
+        private readonly IConfiguration _configuration;
+
+        public ConfigurationService()
         {
-            return ConfigurationManager.AppSettings[key];
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(AppContext.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+            _configuration = builder.Build();
         }
 
-        /// <summary>  
-        /// Gets the column names from the configuration.  
-        /// </summary>  
-        /// <param name="key">The key of the configuration value for column names.</param>  
-        /// <returns>A list of column names.</returns>  
+        /// <summary>
+        /// Gets the configuration value for the specified key.
+        /// </summary>
+        /// <param name="key">The key of the configuration value.</param>
+        /// <returns>The configuration value associated with the specified key.</returns>
+        public string GetConfigValue(string key)
+        {
+            return _configuration[key];
+        }
+
+        /// <summary>
+        /// Gets the column names from the configuration.
+        /// </summary>
+        /// <param name="key">The key of the configuration value for column names.</param>
+        /// <returns>A list of column names.</returns>
         public List<string> GetColumnNames(string key)
         {
             string columnNamesSetting = GetConfigValue(key);

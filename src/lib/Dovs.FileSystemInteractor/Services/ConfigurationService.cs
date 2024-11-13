@@ -13,7 +13,8 @@ namespace Dovs.FileSystemInteractor.Services
 
         public ConfigurationService()
         {
-            var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
+            var environment = Environment.GetEnvironmentVariable("APP_ENVIRONMENT") ?? "Production";
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true);
